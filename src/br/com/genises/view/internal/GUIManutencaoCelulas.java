@@ -57,9 +57,19 @@ public class GUIManutencaoCelulas extends javax.swing.JInternalFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/genises/util/imagens/fechar_vectorized_1.png"))); // NOI18N
         jButton3.setText("Fechar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/genises/util/imagens/remover verctor.png"))); // NOI18N
         jButton4.setText("Remover Membros");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,6 +134,26 @@ public class GUIManutencaoCelulas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if ((remove == null) || (!remove.isVisible())) {
+            try {
+                remove = new GUIRemoveMembros();
+                this.getParent().add(remove);
+                Dimension paneSize = remove.getSize();
+                Dimension screenSize = remove.getToolkit().getScreenSize();
+                remove.setLocation((screenSize.width - paneSize.width) / 2, (screenSize.height - paneSize.height) / 2);
+                remove.setVisible(true);
+            } // TODO add your handling code here:
+            catch (Exception ex) {
+                Logger.getLogger(GUIManutencaoCelulas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -133,4 +163,5 @@ public class GUIManutencaoCelulas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private GUIAdicionarMembrosCelula adicionarmembros;
     private GUIMultiplicacaoCelulas multiplicarcelulas;
+    private GUIRemoveMembros remove;
 }

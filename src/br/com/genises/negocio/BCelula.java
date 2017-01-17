@@ -50,4 +50,13 @@ public class BCelula {
         return daoCelula.verificaExistencia(celulaV);
     }
 
+    public boolean membroPertence(long idCelula, long idMembro) throws Exception {
+        return daoCelula.membroPertence(idCelula, idMembro);
+
+    }
+
+    public void deletaMembro(long idM, long idC) throws Exception {
+        daoCelula.deletaMembro(idM, idC);
+    }
+
 }

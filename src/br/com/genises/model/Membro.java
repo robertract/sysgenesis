@@ -5,10 +5,8 @@
  */
 package br.com.genises.model;
 
-import java.time.LocalDate;
-import java.util.Calendar;
+import br.com.genises.view.util.tablemodel.Tabela;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -152,6 +150,7 @@ public class Membro {
         this.ufOrgao = ufOrgao;
     }
 
+    @Tabela(nome = "Código", tamanho = 50, posicao = 0, nomePesquisa = "membro.id", tipoAtributo = "numero", visivelOutraTela = true, nomeOutraTela = "Código Membro")
     public long getId() {
         return id;
     }
@@ -160,6 +159,7 @@ public class Membro {
         this.id = id;
     }
 
+     @Tabela(nome = "Nome", tamanho = 300, posicao = 1, nomePesquisa = "membro.nome", tipoAtributo = "string", visivelOutraTela = true, nomeOutraTela = "Nome Membro")
     public String getNome() {
         return nome;
     }
@@ -208,6 +208,7 @@ public class Membro {
         this.telefone = telefone;
     }
 
+     @Tabela(nome = "Celular", tamanho = 300, posicao = 3, nomePesquisa = "membro.celular", tipoAtributo = "string", visivelOutraTela = true, nomeOutraTela = "Celular")
     public String getCelular() {
         return celular;
     }
@@ -224,6 +225,7 @@ public class Membro {
         this.email = email;
     }
 
+     @Tabela(nome = "CPF", tamanho = 300, posicao = 2, nomePesquisa = "membro.cpf", tipoAtributo = "string", visivelOutraTela = true, nomeOutraTela = "CPF")
     public String getCpf() {
         return cpf;
     }

@@ -15,6 +15,7 @@ import br.com.genises.view.util.mensages.JOptionPaneUtil;
 import br.com.genises.view.util.tablemodel.CelulasTableModel;
 import br.com.genises.view.util.tablemodel.MembroCelulaTableModel;
 import br.com.genises.view.util.tablemodel.MembroCelulaTableModel2;
+import java.awt.Dimension;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
     private MembroCelulaTableModel tmMembros;
     private MembroCelulaTableModel2 tmMembros2;
     Membro membroSelecionado = new Membro();
-    Celula categoria = new Celula();
+    Celula celula1 = new Celula();
     Celula celula2 = new Celula();
 
     public GUIMultiplicacaoCelulas() throws Exception {
@@ -61,13 +62,11 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cbCelula = new javax.swing.JComboBox<String>();
-        jButton1 = new javax.swing.JButton();
+        cbCelula = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tMembros = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        cbCelula1 = new javax.swing.JComboBox<String>();
-        jButton4 = new javax.swing.JButton();
+        cbCelula1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tMembros1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
@@ -79,12 +78,10 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Celula 1:");
 
-        cbCelula.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
-
-        jButton1.setText("Carregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cbCelula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione..." }));
+        cbCelula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cbCelulaActionPerformed(evt);
             }
         });
 
@@ -93,12 +90,10 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Celula 2:");
 
-        cbCelula1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
-
-        jButton4.setText("Carregar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        cbCelula1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione..." }));
+        cbCelula1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                cbCelula1ActionPerformed(evt);
             }
         });
 
@@ -106,8 +101,18 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tMembros1);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/genises/util/imagens/seta direita .png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/genises/util/imagens/seta esquerda_vectorized.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/genises/util/imagens/limpar_vectorized_1.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -122,31 +127,26 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCelula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCelula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCelula1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(cbCelula1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,8 +156,7 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(cbCelula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(cbCelula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -165,8 +164,7 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
                             .addComponent(jButton2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
-                                .addComponent(cbCelula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton4)))
+                                .addComponent(cbCelula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,33 +172,128 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(jButton5)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton6)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        carregarTabela();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        carregarTabela2();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        cbCelula.setSelectedIndex(0);
+        cbCelula1.setSelectedIndex(0);
+        tMembros.removeAll();
+        tMembros1.removeAll();
+        celula1 = new Celula();
+        celula2 = new Celula();
+        membros1 = new ArrayList<>();
+        membros2 = new ArrayList<>();
+        tmMembros.clear();
+        tmMembros2.clear();
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    Membro mSelecionado1 = new Membro();
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        BCelula bC = new BCelula();
+        mSelecionado1 = new Membro();
+
+        try {
+            int linhaSeleciona = tMembros.getSelectedRow();
+            if (linhaSeleciona == -1) {
+                throw new NegocioException("Selecione um membro!");
+            }
+
+            mSelecionado1 = tmMembros.getLista().get(linhaSeleciona);
+
+            if (bC.membroPertence(celula2.getId(), mSelecionado1.getId()) == true) {
+                JOptionPane.showMessageDialog(null, "O membro já pertence a celula selecionada!", "ERRO:", JOptionPane.ERROR_MESSAGE);
+            } else {
+                bC.gravarMembro(mSelecionado1, celula2);
+                membros2.add(mSelecionado1);
+                carregarTabela2();
+                int resposta;
+
+                Object[] options = {"Sim", "Não"};
+                resposta = JOptionPane.showOptionDialog(null, "Deseja remover " + mSelecionado1.getNome()
+                        + " da celula " + celula1.getNome() + "?", "Informação",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+                if (resposta == 0) {
+                    bC.deletaMembro(mSelecionado1.getId(), celula1.getId());
+                    carregarTabela();
+                }
+            }
+
+        } catch (Exception ex) {
+            JOptionPaneUtil.messageError(ex.getMessage());
+        }
+
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    Membro mSelecionado2 = new Membro();
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        BCelula bC = new BCelula();
+        mSelecionado2 = new Membro();
+
+        try {
+            int linhaSeleciona = tMembros1.getSelectedRow();
+            if (linhaSeleciona == -1) {
+                throw new NegocioException("Selecione um membro!");
+            }
+
+            mSelecionado2 = tmMembros2.getLista().get(linhaSeleciona);
+
+            if (bC.membroPertence(celula1.getId(), mSelecionado2.getId()) == true) {
+                JOptionPane.showMessageDialog(null, "O membro já pertence a celula selecionada!", "ERRO:", JOptionPane.ERROR_MESSAGE);
+            } else {
+                bC.gravarMembro(mSelecionado2, celula1);
+                membros1.add(mSelecionado2);
+                carregarTabela();
+                int resposta;
+
+                Object[] options = {"Sim", "Não"};
+                resposta = JOptionPane.showOptionDialog(null, "Deseja remover " + mSelecionado2.getNome()
+                        + " da celula " + celula2.getNome() + "?", "Informação",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+                if (resposta == 0) {
+                    bC.deletaMembro(mSelecionado2.getId(), celula2.getId());
+                    carregarTabela2();
+                }
+            }
+
+        } catch (Exception ex) {
+            JOptionPaneUtil.messageError(ex.getMessage());
+        }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void cbCelulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCelulaActionPerformed
+        if (cbCelula.getSelectedIndex() == 0) {
+
+        } else {
+            carregarTabela();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_cbCelulaActionPerformed
+
+    private void cbCelula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCelula1ActionPerformed
+        if (cbCelula1.getSelectedIndex() == 0) {
+
+        } else {
+            carregarTabela2();
+        }
+    }//GEN-LAST:event_cbCelula1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbCelula;
     private javax.swing.JComboBox<String> cbCelula1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -233,7 +326,7 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }
-    List<Membro> membros = new ArrayList<>();
+    List<Membro> membros1 = new ArrayList<>();
     List<Membro> membros2 = new ArrayList<>();
 
     private void pesquisarMembros2(long id) throws Exception {
@@ -246,9 +339,9 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
 
     private void pesquisarMembros(long id) throws Exception {
 
-        membros = bCelula.pesquisarMembros(id);
+        membros1 = bCelula.pesquisarMembros(id);
 
-        carregarGrid(membros);
+        carregarGrid(membros1);
 
     }
 
@@ -295,17 +388,19 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
 
             if (cbCelula.getSelectedIndex() == 0 && cbCelula1.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Selecione as celulas que deseja multiplicar!");
+                tmMembros.clear();
             } else {
-                categoria = (Celula) cbCelula.getSelectedItem();
+                celula1 = (Celula) cbCelula.getSelectedItem();
 
                 if (cbCelula1.getSelectedIndex() == 0) {
-                    pesquisarMembros(categoria.getId());
+                    pesquisarMembros(celula1.getId());
                 } else {
                     celula2 = (Celula) cbCelula1.getSelectedItem();
-                    if (categoria.getId() == celula2.getId()) {
+                    if (celula1.getId() == celula2.getId()) {
                         JOptionPane.showMessageDialog(this, "Selecione celulas diferentes!");
+                        tmMembros.clear();
                     } else {
-                        pesquisarMembros(categoria.getId());
+                        pesquisarMembros(celula1.getId());
                     }
                 }
             }
@@ -321,15 +416,17 @@ public class GUIMultiplicacaoCelulas extends javax.swing.JInternalFrame {
 
             if (cbCelula1.getSelectedIndex() == 0 && cbCelula.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Selecione as celulas que deseja multiplicar!");
+                tmMembros2.clear();
             } else {
                 celula2 = (Celula) cbCelula1.getSelectedItem();
 
                 if (cbCelula.getSelectedIndex() == 0) {
                     pesquisarMembros2(celula2.getId());
                 } else {
-                    categoria = (Celula) cbCelula.getSelectedItem();
-                    if (celula2.getId() == categoria.getId()) {
+                    celula1 = (Celula) cbCelula.getSelectedItem();
+                    if (celula2.getId() == celula1.getId()) {
                         JOptionPane.showMessageDialog(this, "Selecione celulas diferentes!");
+                        tmMembros2.clear();
                     } else {
                         pesquisarMembros2(celula2.getId());
                     }

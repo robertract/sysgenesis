@@ -195,7 +195,7 @@ public class DaoCelula extends Dao {
         try {
             String stringSQL = "SELECT CM.ID_CELULA, CM.ID_MEMBRO, M.ID, M.NOME, M.CPF, "
                     + "C.ID FROM celula_membro CM, CELULA C, MEMBROS M \n"
-                    + "WHERE CM.id_celula = c.id AND CM.id_membro = M.id AND C.id = ?";
+                    + "WHERE CM.id_celula = c.id AND CM.id_membro = M.id AND C.id = ? ORDER BY M.NOME";
 //            System.out.println(stringSQL);
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(stringSQL);
             preparedStatement.setLong(1, id);
@@ -246,7 +246,7 @@ public class DaoCelula extends Dao {
     public boolean verificaExistencia(Celula celulaV) throws Exception {
         Connection connection = (Connection) super.getConnection();
         try {
-            String stringSQL = "SELECT NOME FROM CELULA WHERE NOME = ?";
+            String stringSQL = "SELECT * FROM CELULA WHERE NOME = ?";
 //            System.out.println(stringSQL);
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(stringSQL);
             preparedStatement.setString(1, celulaV.getNome());
@@ -264,6 +264,51 @@ public class DaoCelula extends Dao {
             System.out.println(ex.getMessage());
             throw ex;
         }
+    }
+
+    public boolean membroPertence(long idCelula, long idMembro) throws Exception {
+        Connection connection = (Connection) super.getConnection();
+        try {
+            //String stringSQL = "SELECT * FROM CLIENTE_FISICO WHERE nome LIKE ? ORDER BY nome";
+            String stringSQL = "SELECT *  FROM CELULA_MEMBRO WHERE ID_CELULA = ? AND ID_MEMBRO = ?";
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(stringSQL);
+            preparedStatement.setLong(1, idCelula);
+            preparedStatement.setLong(2, idMembro);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw ex;
+        }
+    }
+
+    public void deletaMembro(long idM, long idC) throws Exception {
+        java.sql.Connection connection = super.getConnection();
+        try {
+            connection.setAutoCommit(false);
+            String stringSQL = "DELETE FROM CELULA_MEMBRO WHERE ID_MEMBRO = ? and ID_CELULA = ?";
+
+            try (PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(stringSQL)) {
+
+                preparedStatement.setLong(1, idM);
+                preparedStatement.setLong(2, idC);
+
+                preparedStatement.executeUpdate();
+            }
+            connection.commit();
+            connection.close();
+        } catch (Exception ex) {
+            connection.rollback();
+            connection.close();
+            throw ex;
+        }
+
     }
 
 }

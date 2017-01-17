@@ -19,6 +19,7 @@ import br.com.genises.view.internal.GUICheque;
 import br.com.genises.view.internal.GUIFornecedor;
 import br.com.genises.view.internal.GUIHistorico;
 import br.com.genises.view.internal.GUIManutencaoCelulas;
+import br.com.genises.view.internal.GUIMembros;
 import br.com.genises.view.internal.GUIPagar;
 import br.com.genises.view.internal.GUIPlanoConta;
 import br.com.genises.view.internal.GUIUsuario;
@@ -478,7 +479,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if ((guiMembrasia == null) || (!guiMembrasia.isVisible())) {
             try {
-                guiMembrasia = new GUICadastroMembrasia();
+                guiMembrasia = new GUIMembros();
                 desktopPane.add(guiMembrasia);
                 Dimension paneSize = guiMembrasia.getSize();
                 Dimension screenSize = guiMembrasia.getToolkit().getScreenSize();
@@ -664,7 +665,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUICadastroResponsavel guiResponsavel;
     private GUICadastroIgreja guiIgreja;
     private GUICelulas guiCelula;
-    private GUICadastroMembrasia guiMembrasia;
+    private GUIMembros guiMembrasia;
     private GUIUsuario guiUsuario;
     private GUIManutencaoCelulas guimanutencaocelulas;
     private GUIHistorico guihistorico;

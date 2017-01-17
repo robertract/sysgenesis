@@ -38,7 +38,7 @@ public class GUIAdicionarMembrosCelula extends javax.swing.JInternalFrame {
     private String tipoCampo = "";
     private MembroCelulaTableModel tmMembros;
     Membro membroSelecionado = new Membro();
-    Celula categoria = new Celula();
+    Celula celula = new Celula();
 
     public GUIAdicionarMembrosCelula() throws Exception {
 
@@ -175,7 +175,7 @@ public class GUIAdicionarMembrosCelula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tfMembroKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (membroSelecionado.getId() == 0 || categoria.getId() == 0) {
+        if (membroSelecionado.getId() == 0 || celula.getId() == 0) {
 
         } else {
             try {
@@ -193,7 +193,7 @@ public class GUIAdicionarMembrosCelula extends javax.swing.JInternalFrame {
                     tfMembro.requestFocus();
                 } else {
                     BCelula bCelula = new BCelula();
-                    bCelula.gravarMembro(membroSelecionado, categoria);
+                    bCelula.gravarMembro(membroSelecionado, celula);
                     carregarTabela();
                     membroSelecionado = new Membro();
                     tfMembro.setText(null);
@@ -283,10 +283,10 @@ public class GUIAdicionarMembrosCelula extends javax.swing.JInternalFrame {
     private void carregarTabela() {
         try {
             //pegando o objeto selecionado no combo
-            categoria = (Celula) cbCelula.getSelectedItem();
+            celula = (Celula) cbCelula.getSelectedItem();
             //mostrando o nome da categoria em um dialogo
 
-            pesquisarMembros(categoria.getId());
+            pesquisarMembros(celula.getId());
 
         } catch (Exception ex) {
             Logger.getLogger(GUIAdicionarMembrosCelula.class.getName()).log(Level.SEVERE, null, ex);

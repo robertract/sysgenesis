@@ -34,4 +34,15 @@ public class BMembro {
         daoMembro.gravar(m);
     }
 
+    public List<Membro> pesquisaMembros(String filtro) throws Exception {
+        return daoMembro.pesquisarMembrosGUI(filtro);
+    }
+
+    public Membro pesquisaCompleta(Membro membro) throws Exception {
+        return daoMembro.pesquisaCompleta(membro);
+    }
+
+    public void update(Membro m) throws Exception {
+        daoMembro.update(m);
+    }
 }
